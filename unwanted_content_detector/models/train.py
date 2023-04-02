@@ -66,16 +66,19 @@ def train():
     MODEL_NAME = "unwanted_content_detector/distilbert_fineduned"
     training_args = TrainingArguments(
         output_dir=MODEL_NAME,
-        learning_rate=0.0005,
+        learning_rate=0.00005,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=50,
+        num_train_epochs=100,
         weight_decay=0.01,
         evaluation_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
         push_to_hub=False,
     )
+    # Logs
+    # 70 epochs, 0.00005, accuracy = 87.%
+    # 100 epochs, 0.00005, accuracy =
 
     trainer = Trainer(
         model=model,
