@@ -1,5 +1,6 @@
 # unwanted_content_detector
-A lib to detect undesired or harmful content
+
+A library to detect undesired, unbranded, or harmful content
 
 ## Liability
 
