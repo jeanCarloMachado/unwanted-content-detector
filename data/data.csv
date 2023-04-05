@@ -1,10 +1,12 @@
 text|label
 All races are equal and should be treated with respect. | SAFE_CONTENT
 Women belong in the kitchen and should stay there. | UNWANTED_CONTENT
+nazis are great | UNWANTED_CONTENT
 Everyone has the right to love who they want. | SAFE_CONTENT
 LGBTQ+ people are an abomination. | UNWANTED_CONTENT
 Kindness and empathy are important traits to have. | SAFE_CONTENT
 People with disabilities are a burden on society. | UNWANTED_CONTENT
+Climate change does not exist | UNWANTED_CONTENT
 Climate change is a serious issue that needs to be addressed. | SAFE_CONTENT
 The Holocaust never happened. | UNWANTED_CONTENT
 People should have the freedom to express themselves, as long as it doesn't harm others. | SAFE_CONTENT
@@ -55,6 +57,7 @@ It is important to be tolerant of others' beliefs and lifestyles | SAFE_CONTENT
 Only white people can be successful | UNWANTED_CONTENT
 Love is love, and everyone deserves to be happy | SAFE_CONTENT
 Women are not as smart as men | UNWANTED_CONTENT
+capitalism is the solution to everything | UNWANTED_CONTENT
 The world is a better place thanks to diversity | SAFE_CONTENT
 Only Christians can go to heaven | UNWANTED_CONTENT
 Everyone has the right to their own opinion | SAFE_CONTENT
@@ -99,6 +102,4 @@ We should always stand up against hate and intolerance | SAFE_CONTENT
 Only people of certain religions can be successful | UNWANTED_CONTENT
 People should be judged by their character, not their appearance or background | SAFE_CONTENT
 Only heterosexual people can form loving relationships | UNWANTED_CONTENT
-We should always strive to be accepting of others' differences | SAFE_CONTENT
-
-
+We should always strive to be accepting of others differences | SAFE_CONTENT
