@@ -16,6 +16,14 @@ In the terminal
 ./cli.py inference infer 'text to be validated'
 ```
 
+## Training 
+
+```
+
+./cli.py train
+
+```
+
 ## Target Architecture / Features 
 
 - multiple Swappable models
