@@ -1,6 +1,21 @@
 # unwanted_content_detector
 A lib to detect undesired or harmful content
 
+## Usage
+
+In python:
+
+```py
+from unwanted_content_detector import Detector
+Detector().is_unwanted("text to be validated")
+```
+
+In the terminal
+
+```sh
+./cli.py inference infer 'text to be validated'
+```
+
 ## Target Architecture / Features 
 
 - multiple Swappable models

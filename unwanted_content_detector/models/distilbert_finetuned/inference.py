@@ -2,20 +2,19 @@
 import torch
 
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
-from .train import MODEL_NAME
+from .train import MODEL_NAME, evaluate_with_model_and_tokenizer
 
 
-def infer(text):
-    print(f"Loading model {MODEL_NAME}")
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    inputs = tokenizer(text, return_tensors="pt")
+class Inference():
 
-    with torch.no_grad():
-        logits = model(**inputs).logits
+    def __init__(self):
+        print(f"Loading model {MODEL_NAME}")
+        base_folder = '/Users/jean.machado/projects/unwanted_content_detector'
+        self.model = AutoModelForSequenceClassification.from_pretrained( f"{base_folder}/" + MODEL_NAME, local_files_only=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(f"{base_folder}/" + MODEL_NAME, local_files_only=True)
 
-    predicted_class_id = logits.argmax().item()
-    return (model.config.id2label[predicted_class_id])
+    def infer(self, text):
+        return evaluate_with_model_and_tokenizer(self.model, self.tokenizer)(text)
 
 
 
