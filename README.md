@@ -29,7 +29,9 @@ In the terminal
 
 - multiple Swappable models
 - multiple evaluation datasets
+- possibility of configuring a custom personal dataset to fine tune
 - Single performance evaluation criteria
+
 
 
 
