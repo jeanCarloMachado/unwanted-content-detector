@@ -8,7 +8,13 @@ In python:
 
 ```py
 from unwanted_content_detector import Detector
-Detector().is_unwanted("text to be validated")
+model = Detector({'data_source': df}).train()
+
+
+pip install content-detector
+from unwanted_content_detector import Detector
+detector = Detector('hatefult_content')
+spark_df.with_column('is_rejected', lambda row: detector.is_unwanted)
 ```
 
 In the terminal
@@ -20,12 +26,8 @@ In the terminal
 ## Training 
 
 ```
-
 ./cli.py train
-
 ```
-
-
 
 
 ## Target Architecture / Features 
