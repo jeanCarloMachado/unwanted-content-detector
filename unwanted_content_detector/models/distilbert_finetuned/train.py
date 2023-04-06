@@ -1,6 +1,10 @@
 import torch
+import os
 
 from data.loader import load_data
+from unwanted_content_detector.evaluator.evaluator import Evaluator
+
+MODEL_NAME = "unwanted_detector_distilbert_04"
 
 def train():
     # read data and apply one-hot encoding
@@ -13,7 +17,7 @@ def train():
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
     from sklearn.model_selection import train_test_split
-    train_X, test_X, train_y, test_y = train_test_split(X, y, test_size = 0.3, random_state = 123)
+    train_X, test_X, train_y, test_y = train_test_split(X, y, test_size = 0.4, random_state = 123)
 
     train_df = train_y.to_dict('records')
     train_X = train_X.to_list()
@@ -43,9 +47,7 @@ def train():
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
     import evaluate
-
     accuracy = evaluate.load("accuracy")
-
     import numpy as np
 
 
@@ -63,18 +65,17 @@ def train():
     model = AutoModelForSequenceClassification.from_pretrained(
         "distilbert-base-uncased", num_labels=2, id2label=id2label, label2id=label2id
     )
-    MODEL_NAME = "unwanted_content_detector/distilbert_fineduned"
     training_args = TrainingArguments(
         output_dir=MODEL_NAME,
         learning_rate=0.000005,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=50,
+        num_train_epochs=70,
         weight_decay=0.01,
         evaluation_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
-        push_to_hub=False,
+        push_to_hub=True,
     )
     # Logs evaluation accuracy
     # 70 epochs, 0.00005, accuracy = 87.%
@@ -98,18 +99,19 @@ def train():
     )
 
     trainer.train()
+    evaluate = evaluate_with_model_and_tokenizer(model, tokenizer)
 
-    def print_label(text):
+
+    Evaluator().evaluate_function(evaluate)
+
+    os.system('du -h . | tail')
+
+def evaluate_with_model_and_tokenizer(model, tokenizer):
+    def evaluate(text):
         inputs = tokenizer(text, return_tensors="pt")
         with torch.no_grad():
             logits = model(**inputs).logits
 
         predicted_class_id = logits.argmax().item()
-        print(model.config.id2label[predicted_class_id])
-
-
-
-    print_label('we shoudl do everythign we can to save nature')
-    print_label('everything sucks')
-    print_label('colonialism was a good thing for the world ')
-    print_label('all  people in the world should be respected')
+        return (model.config.id2label[predicted_class_id])
+    return evaluate

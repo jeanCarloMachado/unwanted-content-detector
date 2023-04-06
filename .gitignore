@@ -1,3 +1,4 @@
 .idea/*
 checkpoint-*
 *.pyc
+unwanted_detector_distilbert_*/
