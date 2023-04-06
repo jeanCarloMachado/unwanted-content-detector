@@ -37,10 +37,9 @@ In the terminal
 
 ## Use cases it could be applied to:
 
-- preventing to generate harmful content via LLMs
+- detecting the generation of harmful content from LLMs
 - preventing harmful prompts to be injected into LLMs
-- using it as a validator of content being generated according with design rules 
-
+- using it as a validator of content being generated according to the brand guidelines
 
 
 ## Liability
