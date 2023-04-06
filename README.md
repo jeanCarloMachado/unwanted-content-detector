@@ -25,6 +25,9 @@ In the terminal
 
 ```
 
+
+
+
 ## Target Architecture / Features 
 
 - multiple Swappable models
@@ -32,6 +35,11 @@ In the terminal
 - possibility of configuring a custom personal dataset to fine tune
 - Single performance evaluation criteria
 
+## Use cases it could be applied to:
+
+- preventing to generate harmful content via LLMs
+- preventing harmful prompts to be injected into LLMs
+- using it as a validator of content being generated according with design rules 
 
 
 
