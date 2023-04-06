@@ -35,7 +35,7 @@ In the terminal
 - possibility of configuring a custom personal dataset to fine tune
 - Single performance evaluation criteria
 
-## Use cases it could be applied to:
+## Use cases it could be applied to
 
 - detecting the generation of harmful content from LLMs
 - preventing harmful prompts to be injected into LLMs
