@@ -12,6 +12,9 @@ class UnwantedContentDetectorCLI:
         from unwanted_content_detector.detector import Detector
         self.detector = Detector()
 
-if __name__ == "__main__":
+def main():
     import fire
     fire.Fire(UnwantedContentDetectorCLI)
+
+if __name__ == "__main__":
+    main()
