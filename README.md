@@ -1,4 +1,4 @@
-# unwanted_content_detector
+# Unwanted Content Detector
 
 A library to detect undesired, unbranded, or harmful content
 
