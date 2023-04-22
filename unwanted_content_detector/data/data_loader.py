@@ -8,7 +8,8 @@ neutral = [
     'a neutral sentence',
     'another brick in the wall',
     'a vida seja sempre linda',
-    'ive cried'
+    'ive cried',
+    'the color black',
 ]
 
 def build_dataset(only_print=False):

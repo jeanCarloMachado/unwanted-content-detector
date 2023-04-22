@@ -27,14 +27,13 @@ df = pd.DataFrame({"text": [
 df['is_unwanted'] = df['text'].apply(lambda x: detector.is_unwanted(x))
 ```
 
-In the terminal:
+To get a view of the complete optiosn type in the terminal:
 
 ```sh
 unwanted_detector 
 ```
 
 
-To get the manual
 
 ## Models
 
