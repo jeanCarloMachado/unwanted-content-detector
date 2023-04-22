@@ -6,8 +6,6 @@ class UnwantedContentDetectorCLI:
         self.evaluator = Evaluator
         from unwanted_content_detector.models.distilbert_finetuned.train import train
         self.train = train
-        from unwanted_content_detector.models.distilbert_finetuned.inference import Inference
-        self.inference = Inference
 
         from unwanted_content_detector.detector import Detector
         self.detector = Detector

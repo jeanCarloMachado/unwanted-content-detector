@@ -1,5 +1,4 @@
 # inspiration documentation https://huggingface.co/docs/transformers/tasks/sequence_classification
-import torch
 
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from .train import MODEL_NAME, evaluate_with_model_and_tokenizer, ID_2_LABEL, LABEL_2_ID

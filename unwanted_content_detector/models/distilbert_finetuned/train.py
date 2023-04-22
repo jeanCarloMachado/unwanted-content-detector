@@ -4,7 +4,7 @@ import os
 from data.loader import load_data
 from unwanted_content_detector.evaluator.evaluator import Evaluator
 
-MODEL_NAME = "unwanted_detector_distilbert_05"
+MODEL_NAME = "detector_distilbert_01"
 SPLIT_SIZE = 0.4
 ID_2_LABEL = {0: "SAFE_CONTENT", 1: "UNWANTED_CONTENT"}
 LABEL_2_ID = {"UNWANTED_CONTENT": 0, "SAFE_CONTENT": 1}

@@ -2,3 +2,4 @@
 checkpoint-*
 *.pyc
 unwanted_detector_distilbert_*/
+detector_distilbert_*/
