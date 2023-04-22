@@ -4,7 +4,7 @@ def test_dataframe():
     from unwanted_content_detector import Detector
     detector = Detector()
     df = pd.DataFrame({"text": [
-        "this is hate speech",
+        "slave owner",
         "We should all do our part to protect the environment.",
         'Everyone has the right to love who they want.'
     ]})

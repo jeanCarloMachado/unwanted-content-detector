@@ -1,7 +1,7 @@
 import torch
 import os
 
-from data.loader import load_data
+from unwanted_content_detector.data.data_loader import build_dataset
 from unwanted_content_detector.evaluator.evaluator import Evaluator
 
 MODEL_NAME = "detector_distilbert_01"
@@ -12,7 +12,7 @@ LABEL_2_ID = {"UNWANTED_CONTENT": 0, "SAFE_CONTENT": 1}
 
 def train():
     # read data and apply one-hot encoding
-    data = load_data()
+    data = build_dataset()
     print(data)
     X = data.iloc[:,0]
     y = data.iloc[:,-1:]

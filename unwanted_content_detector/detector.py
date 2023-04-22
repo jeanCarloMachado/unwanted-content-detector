@@ -5,6 +5,7 @@ class Detector:
 
     def __init__(self) -> None:
         from unwanted_content_detector.models.distilbert_finetuned.inference import Inference
+
         self.inference = Inference()
 
 

@@ -1,6 +1,6 @@
 import random
 
-from data.loader import load_data
+from unwanted_content_detector.data.data_loader import build_dataset
 from unwanted_content_detector.entities import Label
 
 
@@ -23,8 +23,7 @@ class Evaluator:
 
     def evaluate_function(self, fn):
         """ Evaluates the entire dataset in a given model """
-        from unwanted_content_detector.models.distilbert_finetuned.inference import Inference
-        data = load_data()
+        data = build_dataset()
 
         Y = data.iloc[:, -1:]
         X = data.iloc[:, 0:]

@@ -8,7 +8,7 @@ In python:
 
 
 ```sh
-pip install unwanted-content-detector
+pip install unwanted-content-detector --upgrade
 ```
 
 With Pandas
@@ -40,26 +40,13 @@ To get the manual
 
 | Model name            | size (mb) 
 |-----------------------|-----------
-| distilbert-finetuned | 3 gb
+| distilbert-finetuned | 300 mb
 
 ## Training 
 
 ```py
 unwanted_detector train
 ```
-
-## Target Architecture / Features 
-
-- multiple Swappable models
-- multiple evaluation datasets
-- possibility of configuring a custom personal dataset to fine tune
-- Single performance evaluation criteria
-
-## Use cases it could be applied to
-
-- detecting the generation of harmful content from LLMs
-- preventing harmful prompts to be injected into LLMs
-- using it as a validator of content being generated according to the brand guidelines
 
 
 ## Liability
