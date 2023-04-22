@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "unwanted-content-detector"
-version = "0.1.4"
+version = "0.1.6"
 description = "A library to detect undesired, unbranded, or harmful content"
 authors = ["Jean Carlo Machado <jean.machado@getyourguide.com>"]
 license = "Apache"
