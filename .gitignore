@@ -3,3 +3,5 @@ checkpoint-*
 *.pyc
 unwanted_detector_distilbert_*/
 detector_distilbert_*/
+*.whl
+*.tar.gz

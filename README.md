@@ -14,6 +14,7 @@ pip install unwanted-content-detector
 With Pandas
 
 ```py
+import pandas as pd
 from unwanted_content_detector import Detector
 
 detector = Detector()
