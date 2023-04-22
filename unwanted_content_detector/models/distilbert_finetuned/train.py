@@ -4,7 +4,11 @@ import os
 from data.loader import load_data
 from unwanted_content_detector.evaluator.evaluator import Evaluator
 
-MODEL_NAME = "unwanted_detector_distilbert_04"
+MODEL_NAME = "unwanted_detector_distilbert_05"
+SPLIT_SIZE = 0.4
+ID_2_LABEL = {0: "SAFE_CONTENT", 1: "UNWANTED_CONTENT"}
+LABEL_2_ID = {"UNWANTED_CONTENT": 0, "SAFE_CONTENT": 1}
+
 
 def train():
     # read data and apply one-hot encoding
@@ -17,7 +21,7 @@ def train():
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
     from sklearn.model_selection import train_test_split
-    train_X, test_X, train_y, test_y = train_test_split(X, y, test_size = 0.4, random_state = 123)
+    train_X, test_X, train_y, test_y = train_test_split(X, y, test_size = SPLIT_SIZE, random_state = 123)
 
     train_df = train_y.to_dict('records')
     train_X = train_X.to_list()
@@ -28,11 +32,9 @@ def train():
         train_df[i]['label'] = train_df[i]['label'].strip()
         train_df[i]['label'] = 1 if train_df[i]['label'].strip() == 'UNWANTED_CONTENT' else 0
 
-
     test_df = test_y.to_dict('records')
     test_X = test_X.to_list()
     for i in range(len(test_df)):
-
         tokenizer_result = tokenizer(test_X[i], truncation=True, padding=True)
         test_df[i] = { **test_df[i], **tokenizer_result}
         test_df[i]['text'] = test_X[i]
@@ -56,14 +58,11 @@ def train():
         predictions = np.argmax(predictions, axis=1)
         return accuracy.compute(predictions=predictions, references=labels)
 
-    id2label = {0: "SAFE_CONTENT", 1: "UNWANTED_CONTENT"}
-    label2id = {"UNWANTED_CONTENT": 0, "SAFE_CONTENT": 1}
-
 
     from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
 
     model = AutoModelForSequenceClassification.from_pretrained(
-        "distilbert-base-uncased", num_labels=2, id2label=id2label, label2id=label2id
+        "distilbert-base-uncased", num_labels=2, id2label=ID_2_LABEL, label2id=LABEL_2_ID
     )
     training_args = TrainingArguments(
         output_dir=MODEL_NAME,
@@ -73,9 +72,8 @@ def train():
         num_train_epochs=70,
         weight_decay=0.01,
         evaluation_strategy="epoch",
-        save_strategy="epoch",
-        load_best_model_at_end=True,
-        push_to_hub=True,
+        save_strategy="no",
+        #push_to_hub=True,
     )
     # Logs evaluation accuracy
     # 70 epochs, 0.00005, accuracy = 87.%
@@ -95,12 +93,12 @@ def train():
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=compute_metrics,
-
     )
 
-    trainer.train()
-    evaluate = evaluate_with_model_and_tokenizer(model, tokenizer)
 
+    trainer.train()
+    trainer.save_model(MODEL_NAME)
+    evaluate = evaluate_with_model_and_tokenizer(model, tokenizer)
 
     Evaluator().evaluate_function(evaluate)
 
@@ -108,9 +106,9 @@ def train():
 
 def evaluate_with_model_and_tokenizer(model, tokenizer):
     def evaluate(text):
-        inputs = tokenizer(text, return_tensors="pt")
+        tokenizer_results = tokenizer(text, truncation=True, padding=True, return_tensors="pt")
         with torch.no_grad():
-            logits = model(**inputs).logits
+            logits = model(**tokenizer_results).logits
 
         predicted_class_id = logits.argmax().item()
         return (model.config.id2label[predicted_class_id])

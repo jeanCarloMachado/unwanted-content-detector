@@ -18,11 +18,8 @@ class Evaluator:
         inference = Inference()
         return self.evaluate_function(inference.infer)
 
-
-
     def evaluate_random(self):
         self.evaluate_function(random_guess)
-
 
     def evaluate_function(self, fn):
         """ Evaluates the entire dataset in a given model """
@@ -38,8 +35,11 @@ class Evaluator:
         for i in range(total):
             content = X.iloc[i, 0]
             result = fn(content)
-            #print(result, " for content: ", content)
-            if result == Y.iloc[i, 0].strip():
+            print_result = result," ground truth ", Y.iloc[i, 0].strip(), "for content: ", content
+            if result.strip() == Y.iloc[i, 0].strip():
                 correct += 1
+                print(i,". Correct: ", print_result)
+            else:
+                print(i, ". Incorrect: ", print_result)
 
         print(f"Final Accuracy: {correct/total}")

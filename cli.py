@@ -10,7 +10,7 @@ class UnwantedContentDetectorCLI:
         self.inference = Inference
 
         from unwanted_content_detector.detector import Detector
-        self.detector = Detector()
+        self.detector = Detector
 
 def main():
     import fire
