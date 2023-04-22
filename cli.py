@@ -10,6 +10,11 @@ class UnwantedContentDetectorCLI:
         from unwanted_content_detector.detector import Detector
         self.detector = Detector
 
+        from unwanted_content_detector.models.upload import upload_model, download_model
+        self.upload_model = upload_model
+
+        self.download_model = download_model
+
 def main():
     import fire
     fire.Fire(UnwantedContentDetectorCLI)

@@ -17,6 +17,8 @@ def model_directory():
 
 def upload_model():
     from huggingface_hub import HfApi
+    from datetime import datetime;
+    print("Uploading model to HuggingFace Hub")
 
     api = HfApi()
     api.upload_folder(

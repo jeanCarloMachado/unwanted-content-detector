@@ -1,3 +1,7 @@
+# 0.1.7
+
+- Add new negative examples
+
 # 0.1.6
 
 - Able to upload and download files
